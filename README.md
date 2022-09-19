@@ -1,2 +1,3 @@
 # BNU-Compilation_Principle
-BNU编译原理实验作业第13组
+这里是编译原理的实验作业第十三组
+编译原理的实验指导：https://www.yuque.com/huolihang/byyl22
