@@ -1,0 +1,7 @@
+0547 089 0x5c4ad 0X345 0X1D7E 0x4m4
+1.23 1.3e0 13.5e9 2.e-23 3. .08 2er 15e 1e2.5
+// note1
+/* this
+is a long long comment
+*/
+h = 5 / 2 // note2
