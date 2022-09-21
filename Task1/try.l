@@ -69,7 +69,7 @@ SPACETAB \t
 {COMMENT_BEGIN} {
 	comment_flag = 1;
 	comment_begin = yylineno;}
-{AERROR} {if(comment_flag!=1)  printf("Error type A at line %d,char %d: mysterious charachter '%s'\n",yylineno,chars,yytext);chars+=yyleng;}
+{AERROR} {if(comment_flag!=1)  printf("Error type A at line %d,char %d: mysterious charachter '%s'.\n",yylineno,chars,yytext);chars+=yyleng;}
 %%
 int main(int argc,char** argv){
 	if(argc<2){
