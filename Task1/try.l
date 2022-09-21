@@ -31,43 +31,45 @@ OR  "||"
 DOT  "."
 NOT  "!"
 BRACKET  "("|")"|"["|"]"|"{"|"}"
-IB  [ \f\n\r\t\v]+
+IB \n
 AERROR .
 /*注释*/
 COMMENT ("//".*)|("/*"([*]*(([^*/])+([/])*)*)*"*/")
 COMMENT_BEGIN "/*"
 /*空白符*/
-SPACE [ ]+
+SPACE [ ]
+SPACETAB \t
 /*第三部分 操作 action 这里面的注释必须顶格一个空格*/
 %%
 {SPACE} {chars+=yyleng;}
-{TYPE}+ {printf("TYPE at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{KEYWORD} {printf("KEYWORD at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{INT}+ {printf("INT data at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{FLOAT}+ {printf("FLOAT at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{ID}+ {printf("ID at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{SEMI}+ {printf("SEMI at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{COMMA}+ {printf("COMMA at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{ASSIGNOP}+ {printf("ASSIGNOP at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{RELOP}+ {printf("RELOP at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{PLUS}+ {printf("PLUS at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{BRACKET} {printf("BRACKET at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{MINUS}+ {printf("MINUS at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{START}+ {printf("STAR at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{DIV}+ {printf("DIV at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{AND}+ {printf("AND at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{OR}+ {printf("OR at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{DOT}+ {printf("DOT at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{NOT}+ {printf("NOT at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
+{SPACETAB} {chars+=4;}
+{TYPE}+ {printf("TYPE at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{KEYWORD} {printf("KEYWORD at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{INT}+ {printf("INT data at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{FLOAT}+ {printf("FLOAT at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{ID}+ {printf("ID at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{SEMI}+ {printf("SEMI at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{COMMA}+ {printf("COMMA at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{ASSIGNOP}+ {printf("ASSIGNOP at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{RELOP}+ {printf("RELOP at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{PLUS}+ {printf("PLUS at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{BRACKET} {printf("BRACKET at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{MINUS}+ {printf("MINUS at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{START}+ {printf("STAR at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{DIV}+ {printf("DIV at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{AND}+ {printf("AND at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{OR}+ {printf("OR at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{DOT}+ {printf("DOT at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{NOT}+ {printf("NOT at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
 {IB} {
 	line++;
 	chars=1;}
 {COMMENT} { 
- printf("NOTE at line: %d char:%d %s\n",yylineno,chars,yytext);}
+ printf("NOTE at line: %d char:%d %s\n",yylineno,chars,yytext);chars+=yyleng;}
 {COMMENT_BEGIN} {
 	comment_flag = 1;
 	comment_begin = yylineno;}
-{AERROR} {if(comment_flag!=1)  printf("Error type A at line %d,char %d: mysterious charachter '%s'\n",yylineno,chars,yytext);}
+{AERROR} {if(comment_flag!=1)  printf("Error type A at line %d,char %d: mysterious charachter '%s'\n",yylineno,chars,yytext);chars+=yyleng;}
 %%
 int main(int argc,char** argv){
 	if(argc<2){
