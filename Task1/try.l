@@ -16,7 +16,7 @@
 TYPE (int)|(char)|(float)|(double)|(long)|(short)
 KEYWORD (if)|(else)|(return)|(struct)
 INT  [-+]?([01][0-9]{9}|20[0-9]{8}|21[0-3][0-9]{7}|214[0-6][0-9]{6}|2147[0-3][0-9]{5}|21474[0-7][0-9]{4}|214748[0-2][0-9]{3}|2147483[0-5][0-9]{2}|21474836[0-3][0-9]|214748364[0-7])|-2147483648
-FLOAT  [-+]?([0-9]*\.[0-9]+|[0-9]+)
+FLOAT  [-+]?([0-9]+*\.[0-9]+|[1-9][0-9]+*\.[0-9]+)
 ID  [_a-zA-Z]|[_a-zA-Z][0-9_a-zA-Z]+
 SEMI  ;
 COMMA  ,
@@ -65,7 +65,7 @@ SPACETAB \t
 	line++;
 	chars=1;}
 {COMMENT} { 
- printf("NOTE at line: %d char:%d %s\n",yylineno,chars,yytext);chars+=yyleng;}
+ printf("NOTE at line: %d char:%d %s\n.",yylineno,chars,yytext);chars+=yyleng;}
 {COMMENT_BEGIN} {
 	comment_flag = 1;
 	comment_begin = yylineno;}
