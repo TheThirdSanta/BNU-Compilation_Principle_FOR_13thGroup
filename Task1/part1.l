@@ -32,24 +32,24 @@ IB  [\f\n\r\t\v]
 
 %%
  /*第三部分 操作 action 这里面的注释必须顶格一个空格*/
-{TYPE}+ {printf("TYPE at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
+{TYPE} {printf("TYPE at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
 {KEYWORD} {printf("KEYWORD at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{INT}+ {printf("INT data at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{FLOAT}+ {printf("FLOAT at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{ID}+ {printf("ID at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{SEMI}+ {printf("SEMI at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{COMMA}+ {printf("COMMA at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{ASSIGNOP}+ {printf("ASSIGNOP at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{RELOP}+ {printf("RELOP at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{PLUS}+ {printf("PLUS at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
+{INT} {printf("INT data at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
+{FLOAT} {printf("FLOAT at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
+{ID} {printf("ID at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
+{SEMI} {printf("SEMI at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
+{COMMA} {printf("COMMA at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
+{ASSIGNOP} {printf("ASSIGNOP at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
+{RELOP} {printf("RELOP at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
+{PLUS} {printf("PLUS at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
 {BRACKET} {printf("BRACKET at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{MINUS}+ {printf("MINUS at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{START}+ {printf("STAR at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{DIV}+ {printf("DIV at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{AND}+ {printf("AND at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{OR}+ {printf("OR at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{DOT}+ {printf("DOT at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
-{NOT}+ {printf("NOT at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
+{MINUS} {printf("MINUS at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
+{START} {printf("STAR at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
+{DIV} {printf("DIV at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
+{AND} {printf("AND at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
+{OR} {printf("OR at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
+{DOT} {printf("DOT at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
+{NOT} {printf("NOT at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
 . {printf ("ERROR Type at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
 {IB}+  
 
