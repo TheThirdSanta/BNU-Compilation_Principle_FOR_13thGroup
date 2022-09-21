@@ -29,7 +29,7 @@ DOT  "."
 NOT  "!"
 BRACKET  "("|")"|"["|"]"|"{"|"}"
 IB  [\f\n\r\t\v]
-KG  [\u0020]
+
 %%
  /*第三部分 操作 action 这里面的注释必须顶格一个空格*/
 {TYPE}+ {printf("TYPE at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
@@ -52,7 +52,7 @@ KG  [\u0020]
 {NOT}+ {printf("NOT at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
 . {printf ("ERROR Type at line %d,char%d:%s\n",yylineno,yyleng,yytext);}
 {IB}+  
-{KG}+
+
 %%
 
 int main(int argc,char** argv){
