@@ -1,0 +1,51 @@
+chenlei@ubuntu:~/Desktop/BNU-Compilation_Principle_FOR_13thGroup/Task1$ ./scanner test.cmm
+TYPE at line 1,char1:int
+ID at line 1,char5:main
+BRACKET at line 1,char9:(
+BRACKET at line 1,char10:)
+BRACKET at line 1,char11:{
+TYPE at line 2,char5:float
+ID at line 2,char11:f
+ASSIGNOP at line 2,char13:=
+FLOAT at line 2,char15:2.5
+SEMI at line 2,char18:;
+TYPE at line 3,char5:int
+ID at line 3,char9:n_num
+ASSIGNOP at line 3,char15:=
+INT data at line 3,char17:30
+SEMI at line 3,char19:;
+KEYWORD at line 4,char5:if
+BRACKET at line 4,char7:(
+ID at line 4,char8:n
+RELOP at line 4,char10:>
+FLOAT at line 4,char12:0.15
+BRACKET at line 4,char16:)
+BRACKET at line 4,char17:{
+ID at line 5,char9:printf
+BRACKET at line 5,char15:(
+Error type A at line 5,char 16: mysterious charachter '"'.
+Error type A at line 5,char 17: mysterious charachter '"'.
+BRACKET at line 5,char18:)
+SEMI at line 5,char19:;
+BRACKET at line 6,char5:}
+KEYWORD at line 6,char6:else
+BRACKET at line 6,char10:{
+ID at line 7,char9:_f2
+ASSIGNOP at line 7,char13:=
+ID at line 7,char15:_f
+STAR at line 7,char18:*
+FLOAT at line 7,char20:0.15
+SEMI at line 7,char24:;
+RELOP at line 8,char9:<
+RELOP at line 8,char11:>
+RELOP at line 8,char13:==
+Error type A at line 9,char 9: mysterious charachter '#'.
+Error type A at line 9,char 11: mysterious charachter '%'.
+AND at line 9,char13:&&
+DIV at line 10,char9:/
+NOTE at line: 10 char:13 //note
+BRACKET at line 11,char5:}
+KEYWORD at line 12,char5:return
+INT data at line 12,char12:0
+SEMI at line 12,char13:;
+BRACKET at line 13,char1:}
