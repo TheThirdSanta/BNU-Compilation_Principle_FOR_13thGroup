@@ -15,8 +15,8 @@
 /*第二部分 定义正则表达式*/
 TYPE (int)|(char)|(float)|(double)|(long)|(short)
 KEYWORD (if)|(else)|(return)|(struct)
-INT  [-+]?[0-9]+
-FLOAT  [-+]?([0-9]+*\.[0-9]+|[1-9][0-9]+*\.[0-9]+)
+INT  (0)|([1-9][0-9]*)
+FLOAT  [0-9]*+*\.[0-9]*e?-?[0-9]*
 ID  [_a-zA-Z]|[_a-zA-Z][0-9_a-zA-Z]+
 SEMI  ;
 COMMA  ,
@@ -28,10 +28,15 @@ START "*"
 DIV  "/"
 AND "&&"
 OR  "||"
-DOT  "."
 NOT  "!"
 BRACKET  "("|")"|"["|"]"|"{"|"}"
 IB \n
+FLOATERROR ([0-9]+e[a-zA-Z0-9]*)|([0-9]*e[0-9]*+*\.[0-9]*)
+OCTINT (0[1-7]([0-7]*))
+OCTERROR 0([0-7]*[8-9]+[0-7]*)+
+HEXINT 0[xX][1-9A-Fa-f][0-9A-Fa-f]+
+HEXERROR 0[xX]([0-9a-fA-F]*[g-zG-Z]+[0-9a-fA-F]*)+
+LONGCOMMENT \/\*(.+\n)+\*\/
 AERROR .
 /*注释*/
 COMMENT ("//".*)|("/*"([*]*(([^*/])+([/])*)*)*"*/")
@@ -45,7 +50,7 @@ SPACETAB \t
 {SPACETAB} {chars+=4;}
 {TYPE}     {printf("TYPE at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
 {KEYWORD}  {printf("KEYWORD at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{INT}+      {printf("INT data at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{INT}     {printf("INT data at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
 {FLOAT}    {printf("FLOAT at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
 {ID}       {printf("ID at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
 {SEMI}     {printf("SEMI at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
@@ -55,12 +60,17 @@ SPACETAB \t
 {PLUS}     {printf("PLUS at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
 {BRACKET}  {printf("BRACKET at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
 {MINUS}    {printf("MINUS at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{START}    {printf("STAR at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{START}    {printf("START at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
 {DIV}      {printf("DIV at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
 {AND}      {printf("AND at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
 {OR}       {printf("OR at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{DOT}      {printf("DOT at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
 {NOT}      {printf("NOT at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{FLOATERROR} {printf("Error Type A at line %d,char %d: Illgal float number: \'%s\'.\n",yylineno,chars,yytext);chars+=yyleng;}
+{OCTINT}   {printf("INT8 at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{OCTERROR}+  {printf("Error Type A at line %d,char %d: Illgal octal number: \'%s\'\n",yylineno,chars,yytext);chars+=yyleng;}
+{HEXINT}   {printf("INT16 at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{HEXERROR} {printf("Error Type A at line %d,char %d: Illgal hexademical number: \'%s\'.\n",yylineno,chars,yytext);chars+=yyleng;}
+{LONGCOMMENT} {printf("LONGCOMMENT at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
 {IB} {
 	line++;
 	chars=1;}
@@ -96,5 +106,4 @@ int main(int argc,char** argv){
 	}
 	return 0;
 }
-
 
