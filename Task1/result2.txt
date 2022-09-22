@@ -1,16 +1,15 @@
-chenlei@ubuntu:~/Desktop/BNU-Compilation_Principle_FOR_13thGroup/Task1$ ./scanner test2.cmm
 INT8 at line 1,char1:0547
 Error Type A at line 1,char 6: Illgal octal number: '089'
 INT16 at line 1,char 10:0x5c4ad
 INT16 at line 1,char 18:0X345
 INT16 at line 1,char 24:0X1D7E
 Error Type A at line 1,char 31: Illgal hexademical number: '0x4m4'.
-FLOAT at line 2,char1:1.23
-FLOAT at line 2,char6:1.3e0
-FLOAT at line 2,char12:13.5e9
-FLOAT at line 2,char19:2.e-23
-FLOAT at line 2,char26:3.
-FLOAT at line 2,char29:.08
+FLOAT at line 2,char 1:1.23
+FLOAT at line 2,char 6:1.3e0
+FLOAT at line 2,char 12:13.5e9
+FLOAT at line 2,char 19:2.e-23
+FLOAT at line 2,char 26:3.
+FLOAT at line 2,char 29:.08
 Error Type A at line 2,char 33: Illgal float number: '2er'.
 Error Type A at line 2,char 37: Illgal float number: '15e'.
 Error Type A at line 2,char 41: Illgal float number: '1e2.5'.
@@ -18,10 +17,10 @@ NOTE at line: 3 char:1 // note1
 LONGCOMMENT at line 6,char 1:/* this
 is a long long comment
 */
-ID at line 7,char1:h
-ASSIGNOP at line 7,char3:=
-INT data at line 7,char5:5
-DIV at line 7,char7:/
-INT data at line 7,char9:2
+ID at line 7,char 1:h
+ASSIGNOP at line 7,char 3:=
+INT data at line 7,char 5:5
+DIV at line 7,char 7:/
+INT data at line 7,char 9:2
 NOTE at line: 7 char:11 // note2
 
