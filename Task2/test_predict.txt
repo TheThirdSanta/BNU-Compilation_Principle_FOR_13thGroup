@@ -1,0 +1,2 @@
+Error type B at line 3: Syntax error.
+Error type B at line 5: Syntax error.
