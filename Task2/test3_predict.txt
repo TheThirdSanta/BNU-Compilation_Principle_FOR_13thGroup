@@ -1,4 +1,0 @@
-Error type A at line 3 : Mysterious characters '%'
-Error type B at line 4: Missing ';'.
-Error type B at line 6: Missing ';'.
-Error type B at line 7: Missing ']'.
