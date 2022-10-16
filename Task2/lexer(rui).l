@@ -14,10 +14,14 @@
 %option yylineno
 %option noyywrap
 /*第二部分 定义正则表达式*/
-TYPE (int)|(char)|(float)|(double)|(long)|(short)
-KEYWORD (if)|(else)|(return)|(struct)
+TYPE (int)|(float)
+IF (if)
+ELSE (else)
+RETURN (return)
+STRUCT (struct)
+WHILE (while)
 INT  (0)|([1-9][0-9]*)
-FLOAT  [0-9]*+*\.[0-9]*e?-?[0-9]*
+FLOAT  [0-9]*DOT[0-9]*(e[+-][0-9]*)?
 ID  [_a-zA-Z]|[_a-zA-Z][0-9_a-zA-Z]+
 SEMI  ;
 COMMA  ,
@@ -30,13 +34,17 @@ DIV  "/"
 AND "&&"
 OR  "||"
 NOT  "!"
-BRACKET  "("|")"|"["|"]"|"{"|"}"
+LP "("
+RP ")"
+LB "["
+RB "]"
+LC "{"
+RC "}"
+DOT \.
 IB \n
-FLOATERROR ([0-9]+e[a-zA-Z0-9]*)|([0-9]*e[0-9]*+*\.[0-9]*)
+/*定义八进制，十六进制*/
 OCTINT (0[1-7]([0-7]*))
-OCTERROR 0([0-7]*[8-9]+[0-7]*)+
 HEXINT 0[xX][1-9A-Fa-f][0-9A-Fa-f]+
-HEXERROR 0[xX]([0-9a-fA-F]*[g-zG-Z]+[0-9a-fA-F]*)+
 LONGCOMMENT \/\*(?:[^\*]|\*+[^\/\*])*\*+\/
 AERROR .
 /*注释*/
@@ -49,28 +57,145 @@ SPACETAB \t
 %%
 {SPACE}    {chars+=yyleng;}
 {SPACETAB} {chars+=4;}
-{TYPE}     {printf("TYPE at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{KEYWORD}  {printf("KEYWORD at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{INT}     {printf("INT data at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{FLOAT}    {printf("FLOAT at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{ID}       {printf("ID at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{SEMI}     {printf("SEMI at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{COMMA}    {printf("COMMA at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{ASSIGNOP} {printf("ASSIGNOP at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{RELOP}    {printf("RELOP at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{PLUS}     {printf("PLUS at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{BRACKET}  {printf("BRACKET at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{MINUS}    {printf("MINUS at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{START}    {printf("START at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{DIV}      {printf("DIV at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{AND}      {printf("AND at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{OR}       {printf("OR at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{NOT}      {printf("NOT at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{FLOATERROR} {printf("Error Type A at line %d,char %d: Illgal float number: \'%s\'.\n",yylineno,chars,yytext);chars+=yyleng;}
+{STRUCT}  {
+	        struct Node *pNode = createNode("STRUCT", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return STRUCT;}
+{RETURN}  {
+	        struct Node *pNode = createNode("RETURN", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return RETURN;}
+{IF}  {
+	        struct Node *pNode = createNode("IF", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return IF;}
+{ELSE}  {
+	        struct Node *pNode = createNode("ELSE", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return ELSE;}
+{WHILE}  {
+	        struct Node *pNode = createNode("WHILE", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return WHILE;}
+{TYPE} { 
+            struct Node *pNode = createNode("TYPE", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);
+            return TYPE; }
+{INT}      {
+	        struct Node *pNode = createNode("INT", 0, INT_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);
+			return INT;}
+{FLOAT}    {
+	        struct Node *pNode = createNode("FLOAT", 0, FLOAT_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return FLOAT;}
+{ID}       {
+	        struct Node *pNode = createNode("ID", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);
+			return ID;}
+{SEMI}     {
+	        struct Node *pNode = createNode("SEMI", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);
+			return SEMI;}
+{COMMA}    {
+	        struct Node *pNode = createNode("COMMA", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return COMMA;}
+{ASSIGNOP} {
+	        struct Node *pNode = createNode("ASSIGNOP", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return ASSIGNOP;}
+{RELOP}    {
+	        struct Node *pNode = createNode("RELOP", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);
+	        return RELOP;}
+{PLUS}     {
+	        struct Node *pNode = createNode("PLUS", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);
+	        return PLUS;}
+{BRACKET}  {
+	        struct Node *pNode = createNode("BRACKET", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return BRACKET;}
+{MINUS}    {
+	        struct Node *pNode = createNode("MINUS", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return MINUS;}
+{STAR}     {
+	        struct Node *pNode = createNode("STAR", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return STAR;}
+{DIV}      {
+	        struct Node *pNode = createNode("DIV", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return DIV;}
+{AND}      {
+	        struct Node *pNode = createNode("AND", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);
+	        return AND;}
+{OR}       {
+	        struct Node *pNode = createNode("OR", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);
+	        return OR;}
+{NOT}      {
+	        struct Node *pNode = createNode("NOT", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return NOT;}
+{DOT}  {
+	        struct Node *pNode = createNode("DOT", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return DOT;}
+{LP}  {
+	        struct Node *pNode = createNode("LP", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return LP;}
+{RP}  {
+	        struct Node *pNode = createNode("RP", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return RP;}
+{RB}  {
+	        struct Node *pNode = createNode("RB", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return RB;}
+{LC}  {
+	        struct Node *pNode = createNode("LC", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return LC;}
+{RC}  {
+	        struct Node *pNode = createNode("RC", 0, STRING_TYPE);
+            yylval = pNode;
+            pNode->id_name = strdup(yytext);      
+			return RC;}
 {OCTINT}   {printf("INT8 at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{OCTERROR}+  {printf("Error Type A at line %d,char %d: Illgal octal number: \'%s\'\n",yylineno,chars,yytext);chars+=yyleng;}
+
 {HEXINT}   {printf("INT16 at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{HEXERROR} {printf("Error Type A at line %d,char %d: Illgal hexademical number: \'%s\'.\n",yylineno,chars,yytext);chars+=yyleng;}
+
 {LONGCOMMENT} {printf("LONGCOMMENT at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
 {IB} {
 	line++;
@@ -81,6 +206,7 @@ SPACETAB \t
 	comment_flag = 1;
 	comment_begin = yylineno;}
 {AERROR} {if(comment_flag!=1)  printf("Error type A at line %d,char %d: mysterious charachter '%s'.\n",yylineno,chars,yytext);chars+=yyleng;}
+
 %%
 int main(int argc,char** argv){
 	if(argc<2){
