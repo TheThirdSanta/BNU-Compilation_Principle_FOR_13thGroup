@@ -2,6 +2,7 @@
 %{
 	#include <stdlib.h>
 	#include <stdio.h>
+	#include "syntax.tab.h"
 	FILE* f;
 	int i;
 	int comment_flag;
@@ -58,33 +59,33 @@ SPACETAB \t
 %%
 {SPACE}    {chars+=yyleng;}
 {SPACETAB} {chars+=4;}
-{TYPE}     {printf("TYPE at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{IF}  {printf("KEYWORD at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{ELSE}  {printf("KEYWORD at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{STRUCT}  {printf("KEYWORD at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{RETURN}  {printf("KEYWORD at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{WHILE}  {printf("KEYWORD at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{INT}     {printf("INT data at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{FLOAT}    {printf("FLOAT at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{ID}       {printf("ID at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{SEMI}     {printf("SEMI at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{COMMA}    {printf("COMMA at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{ASSIGNOP} {printf("ASSIGNOP at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{RELOP}    {printf("RELOP at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{PLUS}     {printf("PLUS at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{LP}  {printf("BRACKET at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{RP}  {printf("BRACKET at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{RB}  {printf("BRACKET at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{LB}  {printf("BRACKET at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{LC}  {printf("BRACKET at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{RC}  {printf("BRACKET at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{DOT}  {printf("DOT at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{MINUS}    {printf("MINUS at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{START}    {printf("START at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{DIV}      {printf("DIV at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{AND}      {printf("AND at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{OR}       {printf("OR at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
-{NOT}      {printf("NOT at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
+{TYPE}     {printf("TYPE at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;yylval=atio(yytext);return TYPE;}
+{IF}  {printf("KEYWORD at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return IF;}
+{ELSE}  {printf("KEYWORD at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return ELSE:}
+{STRUCT}  {printf("KEYWORD at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return STRUCT;}
+{RETURN}  {printf("KEYWORD at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return RETURN;}
+{WHILE}  {printf("KEYWORD at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return WHILE;}
+{INT}     {printf("INT data at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return INT;}
+{FLOAT}    {printf("FLOAT at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return FOLAT;}
+{ID}       {printf("ID at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return ID;}
+{SEMI}     {printf("SEMI at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return SEMI;}
+{COMMA}    {printf("COMMA at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return COMMA;}
+{ASSIGNOP} {printf("ASSIGNOP at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return ASSIGNOP;}
+{RELOP}    {printf("RELOP at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return RELOP;}
+{PLUS}     {printf("PLUS at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return PLUS;}
+{LP}  {printf("BRACKET at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return LP;}
+{RP}  {printf("BRACKET at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return RP;}
+{RB}  {printf("BRACKET at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return RB;}
+{LB}  {printf("BRACKET at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return LB;}
+{LC}  {printf("BRACKET at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return LC;}
+{RC}  {printf("BRACKET at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return RC:}
+{DOT}  {printf("DOT at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return DOT;}
+{MINUS}    {printf("MINUS at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return MINUS;}
+{START}    {printf("START at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return START;}
+{DIV}      {printf("DIV at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return DIV;}
+{AND}      {printf("AND at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return AND;}
+{OR}       {printf("OR at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return OR;}
+{NOT}      {printf("NOT at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;return NOT;}
 {FLOATERROR} {printf("Error Type A at line %d,char %d: Illgal float number: \'%s\'.\n",yylineno,chars,yytext);chars+=yyleng;}
 {OCTINT}   {printf("INT8 at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
 {OCTERROR}+  {printf("Error Type A at line %d,char %d: Illgal octal number: \'%s\'\n",yylineno,chars,yytext);chars+=yyleng;}
