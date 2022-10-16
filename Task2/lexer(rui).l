@@ -58,20 +58,20 @@ SPACETAB \t
 {SPACE}    {chars+=yyleng;}
 {SPACETAB} {chars+=4;}
 {STRUCT}  {
-	        struct Node *pNode = createNode("STRUCT", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("STRUCT", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return STRUCT;}
+	    return STRUCT;}
 {RETURN}  {
-	        struct Node *pNode = createNode("RETURN", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("RETURN", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return RETURN;}
+	    return RETURN;}
 {IF}  {
-	        struct Node *pNode = createNode("IF", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("IF", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return IF;}
+	    return IF;}
 {ELSE}  {
 	        struct Node *pNode = createNode("ELSE", 0, STRING_TYPE);
             yylval = pNode;
