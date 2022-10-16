@@ -73,120 +73,120 @@ SPACETAB \t
             pNode->id_name = strdup(yytext);      
 	    return IF;}
 {ELSE}  {
-	        struct Node *pNode = createNode("ELSE", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("ELSE", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return ELSE;}
+	    return ELSE;}
 {WHILE}  {
-	        struct Node *pNode = createNode("WHILE", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("WHILE", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return WHILE;}
+	    return WHILE;}
 {TYPE} { 
             struct Node *pNode = createNode("TYPE", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);
             return TYPE; }
 {INT}      {
-	        struct Node *pNode = createNode("INT", 0, INT_TYPE);
+	    struct Node *pNode = createNode("INT", 0, INT_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);
-			return INT;}
+	    return INT;}
 {FLOAT}    {
-	        struct Node *pNode = createNode("FLOAT", 0, FLOAT_TYPE);
+	    struct Node *pNode = createNode("FLOAT", 0, FLOAT_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return FLOAT;}
+	    return FLOAT;}
 {ID}       {
-	        struct Node *pNode = createNode("ID", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("ID", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);
-			return ID;}
+	    return ID;}
 {SEMI}     {
-	        struct Node *pNode = createNode("SEMI", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("SEMI", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);
-			return SEMI;}
+	    return SEMI;}
 {COMMA}    {
-	        struct Node *pNode = createNode("COMMA", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("COMMA", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return COMMA;}
+	    return COMMA;}
 {ASSIGNOP} {
-	        struct Node *pNode = createNode("ASSIGNOP", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("ASSIGNOP", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return ASSIGNOP;}
+	    return ASSIGNOP;}
 {RELOP}    {
-	        struct Node *pNode = createNode("RELOP", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("RELOP", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);
-	        return RELOP;}
+	    return RELOP;}
 {PLUS}     {
-	        struct Node *pNode = createNode("PLUS", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("PLUS", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);
-	        return PLUS;}
+	    return PLUS;}
 {MINUS}    {
-	        struct Node *pNode = createNode("MINUS", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("MINUS", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return MINUS;}
+	    return MINUS;}
 {STAR}     {
-	        struct Node *pNode = createNode("STAR", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("STAR", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return STAR;}
+	    return STAR;}
 {DIV}      {
-	        struct Node *pNode = createNode("DIV", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("DIV", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return DIV;}
+	    return DIV;}
 {AND}      {
-	        struct Node *pNode = createNode("AND", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("AND", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);
-	        return AND;}
+	    return AND;}
 {OR}       {
-	        struct Node *pNode = createNode("OR", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("OR", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);
-	        return OR;}
+	    return OR;}
 {NOT}      {
-	        struct Node *pNode = createNode("NOT", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("NOT", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return NOT;}
+	    return NOT;}
 {DOT}  {
-	        struct Node *pNode = createNode("DOT", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("DOT", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return DOT;}
+	    return DOT;}
 {LP}  {
-	        struct Node *pNode = createNode("LP", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("LP", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return LP;}
+	    return LP;}
 {RP}  {
-	        struct Node *pNode = createNode("RP", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("RP", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return RP;}
+	    return RP;}
 {RB}  {
-	        struct Node *pNode = createNode("RB", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("RB", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return RB;}
+	    return RB;}
 {LC}  {
-	        struct Node *pNode = createNode("LC", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("LC", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return LC;}
+	    return LC;}
 {RC}  {
-	        struct Node *pNode = createNode("RC", 0, STRING_TYPE);
+	    struct Node *pNode = createNode("RC", 0, STRING_TYPE);
             yylval = pNode;
             pNode->id_name = strdup(yytext);      
-			return RC;}
+	    return RC;}
 {OCTINT}   {printf("INT8 at line %d,char%d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
 
 {HEXINT}   {printf("INT16 at line %d,char %d:%s\n",yylineno,chars,yytext);chars+=yyleng;}
