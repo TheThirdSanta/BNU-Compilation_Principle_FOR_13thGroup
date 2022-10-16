@@ -80,7 +80,7 @@ void Preorder(Ast ast, int level)
             printf(" ");
         }
         // printf(" rline ");
-        if (ast->line != -1)
+       if (ast->line != -1)
         {
             printf("%s", ast->name);
             // 根据不同类型打印节点数据
@@ -96,11 +96,73 @@ void Preorder(Ast ast, int level)
             {
                 printf(": %f", ast->fltval);
             }
+            else if (!strcmp(ast->name, "SEMI"))
+            {
+                printf(": %c", ';');
+            }
+            else if (!strcmp(ast->name, "LC"))
+            {
+                printf(": %c", '(');
+            }
+            else if (!strcmp(ast->name, "RC"))
+            {
+                printf(": %c",')' );
+            }
+            else if (!strcmp(ast->name, "COMMA"))
+            {
+                printf(": %c", ',');
+            }
+            else if (!strcmp(ast->name, "LB"))
+            {
+                printf(": %c", '[');
+            }
+            else if (!strcmp(ast->name, "RB"))
+            {
+                printf(": %c", ']');
+            }
+             else if (!strcmp(ast->name, "LC"))
+            {
+                printf(": %c", '{');
+            }
+             else if (!strcmp(ast->name, "RC"))
+            {
+                printf(": %c", '}');
+            }
+             else if (!strcmp(ast->name, "STRUCT"))
+            {
+                printf(": %s", "struct");
+            }
+             else if (!strcmp(ast->name, "IF"))
+            {
+                printf(": %s", "if");
+            }
+             else if (!strcmp(ast->name, "RETURN"))
+            {
+                printf(": %s", "return");
+            }
+             else if (!strcmp(ast->name, "ELSE"))
+            {
+                printf(": %s", "else");
+            }
+             else if (!strcmp(ast->name, "WHILE"))
+            {
+                printf(": %s", "while");
+            }
+             else if (!strcmp(ast->name, "ASSIGNOP"))
+            {
+                printf(": %c", '=');
+            }
+             else if (!strcmp(ast->name, "DOT"))
+            {
+                printf(": %c", '.');
+            }
             else
             {
                 printf("(%d)", ast->line);
             }
         }
+        else if((ast->line == -1))
+            printf("%s:%s","Empty","Empty");
         printf("\n");
         Preorder(ast->fchild, level + 1);
         Preorder(ast->next, level);
