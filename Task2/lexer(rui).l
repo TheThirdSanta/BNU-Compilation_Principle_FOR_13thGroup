@@ -29,7 +29,7 @@ ASSIGNOP  =
 RELOP  >|<|>=|<=|==|!=
 PLUS  \+
 MINUS  \-
-START "*"
+STAR "*"
 DIV  "/"
 AND "&&"
 OR  "||"
@@ -127,11 +127,6 @@ SPACETAB \t
             yylval = pNode;
             pNode->id_name = strdup(yytext);
 	        return PLUS;}
-{BRACKET}  {
-	        struct Node *pNode = createNode("BRACKET", 0, STRING_TYPE);
-            yylval = pNode;
-            pNode->id_name = strdup(yytext);      
-			return BRACKET;}
 {MINUS}    {
 	        struct Node *pNode = createNode("MINUS", 0, STRING_TYPE);
             yylval = pNode;
