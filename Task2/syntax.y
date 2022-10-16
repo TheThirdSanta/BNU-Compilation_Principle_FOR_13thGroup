@@ -112,7 +112,12 @@ Exp: Exp ASSIGNOP Exp {}
 	| Exp DOT ID {}
 	| ID {}
 	| INT {}
-	| FLOAT {};
+	| FLOAT {}
+	| error RB {}
+	| error INT {}
+	| FLOAT error ID {}
+	| INT error ID {}
+	| INT error INT {};
 Args: Exp COMMA Args {}
 	| Exp {};
 
