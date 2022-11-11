@@ -1,0 +1,10 @@
+int main(){
+        int i;
+        float j = 9;            // error 5
+        i = 3.7;                // error 5
+
+        10 = i;                 // error 6
+        i + 3.7;                // error 7
+    
+        return j;               // error 8
+}
