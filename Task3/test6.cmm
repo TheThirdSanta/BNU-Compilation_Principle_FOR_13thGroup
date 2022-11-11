@@ -1,0 +1,11 @@
+int f1();               // error 18
+int f2();
+int f2(int f);          // error 19
+float f2();
+int f3(){
+	int x;
+	{int x;}
+}
+int f4(){
+	int x;
+}
