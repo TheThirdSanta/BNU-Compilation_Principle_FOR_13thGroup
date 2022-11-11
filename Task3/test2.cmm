@@ -1,0 +1,13 @@
+int main(){
+
+        int i = 0;
+        int i;                  // error 3
+        j = i + 1;              // error 1
+        inc(i);                 // error 2
+
+
+}
+
+int main(){                     // error 4
+        return 3.5;             // error 8
+}
