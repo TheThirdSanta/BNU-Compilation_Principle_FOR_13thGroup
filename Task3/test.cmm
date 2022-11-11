@@ -1,0 +1,10 @@
+int fun(){
+	int i;
+}
+
+int main(){
+	float f = 0.;
+	f = f + 0.1;
+	fun();
+	return 0;
+}
