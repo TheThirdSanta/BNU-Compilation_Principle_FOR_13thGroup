@@ -1,0 +1,21 @@
+struct sa{
+        int a;
+        float b;
+        int b;          // error 15
+}c;
+
+struct sf{
+        int x;
+};
+struct sf{              // error16
+        int y;
+};
+
+int main(){
+        struct sk mm;   // error 17
+        struct sa nn;
+        int a[10];
+        c.f;            //error 14
+        c.b;
+        a.b;			//error 13
+}
