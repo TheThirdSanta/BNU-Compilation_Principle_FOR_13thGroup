@@ -1,0 +1,13 @@
+int func(){}
+float func2(int m, float n){}
+
+int main(){
+        int i;
+        float j[20];
+        func();
+        func(i);                // error 9
+        func2(8, 8);            // error 9
+        i[0];                   // error 10
+        i();                    // error 11
+        j[1.5] = 3.2;           // error 12
+}
